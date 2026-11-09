@@ -12,13 +12,6 @@
 - GitHub Pages
 - Crypto Subtle API (SHA-256, имитация доступа)
 
-## Запуск
-
-1. Установить VS Code.
-2. Установить расширение Live Server.
-3. Открыть папку проекта.
-4. Запустить `index.html` через Live Server.
-
 ## Основные модули
 
 - Dashboard

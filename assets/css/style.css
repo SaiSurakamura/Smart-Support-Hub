@@ -981,3 +981,61 @@ body:not(.dev-on) .dev-only-col {
         max-width: none;
     }
 }
+
+/* ===== ОНБОРДИНГ (Issue #1) ===== */
+.onboard {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 16px;
+    border: 1px solid var(--accent-primary);
+    border-radius: var(--radius);
+    background: rgba(255, 123, 147, 0.08);
+}
+
+.onboard-body p {
+    margin: 6px 0;
+    color: var(--text-muted);
+}
+
+.onboard-body ul {
+    margin: 8px 0 8px 18px;
+    color: var(--text-main);
+    display: grid;
+    gap: 4px;
+}
+
+.onboard-body b {
+    color: var(--accent-primary);
+}
+
+.onboard code {
+    background: var(--bg-input);
+    padding: 2px 6px;
+    border-radius: 6px;
+    font-size: 0.85em;
+}
+
+.onboard .btn {
+    flex: 0 0 auto;
+}
+
+@media (max-width: 520px) {
+    .onboard {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .onboard .btn {
+        width: 100%;
+    }
+}
+
+/* ===== POLISH NEON (Issue #2): убираем вспышку/муту на мобильных ===== */
+@media (max-width: 992px) {
+    .sidebar {
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+    }
+}

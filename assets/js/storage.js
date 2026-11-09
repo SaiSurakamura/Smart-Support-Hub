@@ -70,16 +70,36 @@ function toast(message, type = "info", ms = 3200) {
 }
 
 /* ===== ОНБОРДИНГ (Fix A, Issue #1) ===== */
+function getPageName() {
+    const path = location.pathname.split('/').pop() || 'index.html';
+    return path.replace('.html', '');
+}
+
 function initOnboarding() {
-    const banner = document.getElementById("onboardBanner");
+    const page = getPageName();
+    const banner = document.getElementById('onboardBanner');
+    const showBtn = document.getElementById('showGuideBtn');
     if (!banner) return;
-    if (localStorage.getItem("onboarded") === "yes") { banner.style.display = "none"; return; }
-    banner.style.display = "";
-    const btn = document.getElementById("onboardDismiss");
-    if (btn) btn.addEventListener("click", () => {
-        localStorage.setItem("onboarded", "yes");
-        banner.style.display = "none";
-    });
+
+    // Проверяем, закрывал ли пользователь баннер именно на ЭТОЙ странице
+    const isDismissed = localStorage.getItem(`onboarded_${page}`) === 'yes';
+    banner.style.display = isDismissed ? 'none' : 'flex';
+
+    // Кнопка "Понятно, скрыть" внутри баннера
+    const dismissBtn = document.getElementById('onboardDismiss');
+    if (dismissBtn) {
+        dismissBtn.onclick = () => {
+            localStorage.setItem(`onboarded_${page}`, 'yes');
+            banner.style.display = 'none';
+        };
+    }
+
+    // Кнопка "?" в топбаре — просто показывает баннер, не меняя localStorage
+    if (showBtn) {
+        showBtn.onclick = () => {
+            banner.style.display = 'flex';
+        };
+    }
 }
 
 /* ===== ВЕРСИЯ ===== */

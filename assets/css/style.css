@@ -1039,3 +1039,50 @@ body:not(.dev-on) .dev-only-col {
         -webkit-backdrop-filter: none !important;
     }
 }
+
+/* ===== SLA TIMER ===== */
+.sla-time {
+    margin-top: 4px;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+}
+
+.sla-time.overdue {
+    color: var(--danger);
+    font-weight: 700;
+}
+
+/* ===== STATUS SELECT ===== */
+.status-select {
+    padding: 6px 10px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    background: var(--bg-input);
+    color: var(--text-main);
+    font-size: 0.85rem;
+    cursor: pointer;
+}
+
+.status-select:focus {
+    outline: none;
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 2px var(--accent-glow);
+}
+
+/* ===== SEARCH INPUT ===== */
+.search-wrap {
+    display: block;
+    margin-bottom: 10px;
+}
+
+#showGuideBtn {
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border-radius: 50%;
+    font-size: 1rem;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}

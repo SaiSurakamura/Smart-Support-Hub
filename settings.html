@@ -48,23 +48,20 @@
                 </div>
                 <div class="actions">
                     <button id="menuBtn" class="menu-btn" aria-label="Меню">☰</button>
-                    <button id="themeButton" class="btn">Тема</button>
+                    <button id="showGuideBtn" class="btn small secondary" title="Показать подсказку">?</button>
                 </div>
             </header>
 
             <div class="onboard" id="onboardBanner">
                 <div class="onboard-body">
-                    <strong>Вы впервые в Smart Support Hub</strong>
-                    <p>Это панель команды поддержки продукта. Кратко, чтобы не запутаться:</p>
+                    <strong>Настройки и профили</strong>
+                    <p>Здесь управляются внешний вид и права доступа.</p>
                     <ul>
-                        <li><b>Инцидент</b> — сбой у пользователя (не открывается отчёт, ошибка входа). Регистрируется в
-                            «Инцидентах», у каждого приоритет и срок <b>SLA</b>.</li>
-                        <li><b>SLA</b> — согласованный срок решения: «В срок» успеваем, «Нарушен» — просрочили.</li>
-                        <li><b>Заявка</b> — просьба доработать продукт. Четыре вида: исправить ошибку, адаптировать,
-                            добавить возможность, профилактика.</li>
-                        <li><b>Релизы</b> — версии продукта и что в них изменилось.</li>
+                        <li><b>Тема и Неон:</b> переключение визуального стиля. Неон выключен по умолчанию.</li>
+                        <li><b>Профили:</b> Оператор (базовый доступ), Администратор, Разработчик.</li>
+                        <li><b>Режим Разработчика</b> открывается по паролю и добавляет кнопки удаления записей в
+                            таблицах.</li>
                     </ul>
-                    <p class="hint">Подробное руководство — в файле <code>docs/USER_GUIDE.md</code> в репозитории.</p>
                 </div>
                 <button id="onboardDismiss" class="btn small">Понятно, скрыть</button>
             </div>
@@ -122,6 +119,7 @@
                     профиль
                     вернутся к учебным значениям.</p>
                 <button id="resetButton" class="btn danger">Очистить все данные</button>
+                <button id="exportButton" class="btn">Экспортировать данные</button>
             </section>
         </main>
     </div>

@@ -25,7 +25,6 @@ function destroyCharts() {
         priorityChart.destroy();
         priorityChart = null;
     }
-
     if (requestChart) {
         requestChart.destroy();
         requestChart = null;
@@ -34,11 +33,9 @@ function destroyCharts() {
 
 function renderCharts() {
     destroyCharts();
-
     if (typeof Chart === "undefined") return;
 
     const isLight = document.body.classList.contains("light");
-
     Chart.defaults.color = isLight ? "#557084" : "#8bb0c4";
     Chart.defaults.borderColor = isLight ? "rgba(0,0,0,0.08)" : "rgba(255,255,255,0.08)";
 
@@ -58,36 +55,23 @@ function renderCharts() {
             type: "bar",
             data: {
                 labels: priorityLevels.map(level => priorityNames[level]),
-                datasets: [
-                    {
-                        label: "Инциденты",
-                        data: priorityCounts,
-                        backgroundColor: [
-                            "rgba(255, 83, 112, 0.7)",
-                            "rgba(255, 200, 87, 0.7)",
-                            "rgba(0, 229, 255, 0.7)",
-                            "rgba(61, 220, 151, 0.7)"
-                        ],
-                        borderRadius: 8
-                    }
-                ]
+                datasets: [{
+                    label: "Инциденты",
+                    data: priorityCounts,
+                    backgroundColor: [
+                        "rgba(255, 83, 112, 0.7)",
+                        "rgba(255, 200, 87, 0.7)",
+                        "rgba(0, 229, 255, 0.7)",
+                        "rgba(61, 220, 151, 0.7)"
+                    ],
+                    borderRadius: 8
+                }]
             },
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        display: false
-                    }
-                },
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        ticks: {
-                            stepSize: 1
-                        }
-                    }
-                }
+                plugins: { legend: { display: false } },
+                scales: { y: { beginAtZero: true, ticks: { stepSize: 1 } } }
             }
         });
     }
@@ -98,31 +82,44 @@ function renderCharts() {
             type: "doughnut",
             data: {
                 labels: requestTypes.map(type => requestTypeNames[type]),
-                datasets: [
-                    {
-                        data: requestCounts,
-                        backgroundColor: [
-                            "rgba(255, 83, 112, 0.75)",
-                            "rgba(255, 200, 87, 0.75)",
-                            "rgba(0, 229, 255, 0.75)",
-                            "rgba(61, 220, 151, 0.75)"
-                        ],
-                        borderWidth: 0
-                    }
-                ]
+                datasets: [{
+                    data: requestCounts,
+                    backgroundColor: [
+                        "rgba(255, 83, 112, 0.75)",
+                        "rgba(255, 200, 87, 0.75)",
+                        "rgba(0, 229, 255, 0.75)",
+                        "rgba(61, 220, 151, 0.75)"
+                    ],
+                    borderWidth: 0
+                }]
             },
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        position: "bottom"
-                    }
-                }
+                plugins: { legend: { position: "bottom" } }
             }
         });
     }
 }
 
 window.addEventListener("themeChanged", renderCharts);
+window.addEventListener("dataChanged", () => {
+    const deps = loadData("deployments", startDeployments);
+    const incs = loadData("incidents", startIncidents);
+    const reqs = loadData("requests", startRequests);
+    const rels = loadData("releases", startReleases);
+
+    const activeDeps = deps.filter(item => item.stage !== "production").length;
+    const openIncs = incs.filter(item => item.status !== "resolved").length;
+    const slaPct = getSlaPercent(incs, settings);
+    const curVer = rels.length ? [...rels].sort(compareSemver)[rels.length - 1].version : "v1.0.0";
+
+    document.getElementById("kpiDeployments").textContent = activeDeps;
+    document.getElementById("kpiIncidents").textContent = openIncs;
+    document.getElementById("kpiSla").textContent = `${slaPct}%`;
+    document.getElementById("kpiVersion").textContent = curVer;
+
+    renderCharts();
+});
+
 renderCharts();

@@ -66,3 +66,24 @@ on(resetButton, "click", () => {
     toast("Данные очищены. Перезагрузка…", "warning", 1500);
     setTimeout(() => location.reload(), 700);
 });
+
+const exportButton = document.getElementById("exportButton");
+if (exportButton) {
+    exportButton.addEventListener("click", () => {
+        const data = {
+            deployments: loadData("deployments", startDeployments),
+            incidents: loadData("incidents", startIncidents),
+            requests: loadData("requests", startRequests),
+            releases: loadData("releases", startReleases)
+        };
+        const json = JSON.stringify(data, null, 2);
+        const blob = new Blob([json], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "data-export.json";
+        a.click();
+        URL.revokeObjectURL(url);
+        toast("Данные экспортированы в data-export.json", "success", 3000);
+    });
+}

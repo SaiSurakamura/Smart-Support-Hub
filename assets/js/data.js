@@ -70,6 +70,21 @@ function getSlaState(incident, config = settings, now = Date.now()) {
     return now > deadline ? "breached" : "on_track";
 }
 
+function getSlaRemaining(incident, config = settings, now = Date.now()) {
+    if (incident.status === "resolved") return "";
+    const hours = config?.slaHours?.[incident.priority];
+    if (!hours) return "";
+    const created = new Date(incident.createdAt).getTime();
+    if (Number.isNaN(created)) return "";
+    const deadline = created + hours * 60 * 60 * 1000;
+    const diff = deadline - now;
+    const abs = Math.abs(diff);
+    const h = Math.floor(abs / 3600000);
+    const m = Math.floor((abs % 3600000) / 60000);
+    const human = `${h}ч ${m}м`;
+    return diff >= 0 ? `осталось ${human}` : `просрочено на ${human}`;
+}
+
 function getSlaPercent(incidents, config = settings) {
     const resolved = incidents.filter(item => item.status === "resolved");
     if (resolved.length === 0) return 100;

@@ -61,22 +61,21 @@
                     <button id="menuBtn" class="menu-btn" aria-label="Меню">☰</button>
                     <button id="neonButton" class="btn secondary">Neon</button>
                     <button id="themeButton" class="btn">Тема</button>
+                    <button id="showGuideBtn" class="btn small secondary" title="Показать подсказку">?</button>
                 </div>
             </header>
 
             <div class="onboard" id="onboardBanner">
                 <div class="onboard-body">
-                    <strong>Вы впервые в Smart Support Hub</strong>
-                    <p>Это панель команды поддержки продукта. Кратко, чтобы не запутаться:</p>
+                    <strong>Инциденты и SLA</strong>
+                    <p>Инцидент — это сбой у пользователя (например, "Не открывается отчёт").</p>
                     <ul>
-                        <li><b>Инцидент</b> — сбой у пользователя (не открывается отчёт, ошибка входа). Регистрируется в
-                            «Инцидентах», у каждого приоритет и срок <b>SLA</b>.</li>
-                        <li><b>SLA</b> — согласованный срок решения: «В срок» успеваем, «Нарушен» — просрочили.</li>
-                        <li><b>Заявка</b> — просьба доработать продукт. Четыре вида: исправить ошибку, адаптировать,
-                            добавить возможность, профилактика.</li>
-                        <li><b>Релизы</b> — версии продукта и что в них изменилось.</li>
+                        <li><b>Приоритет</b> определяет срок решения (SLA): Critical — 4ч, High — 8ч, Medium — 24ч, Low
+                            — 72ч.</li>
+                        <li><b>Статус SLA</b> показывает, успеваем ли мы решить инцидент вовремя. Если время вышло —
+                            статус "Нарушен".</li>
+                        <li><b>Кнопка "Решить"</b> закрывает инцидент и обновляет показатели на Панели.</li>
                     </ul>
-                    <p class="hint">Подробное руководство — в файле <code>docs/USER_GUIDE.md</code> в репозитории.</p>
                 </div>
                 <button id="onboardDismiss" class="btn small">Понятно, скрыть</button>
             </div>
@@ -108,15 +107,20 @@
             <section class="card">
                 <div class="row-between">
                     <h2>Список инцидентов</h2>
-                    <label>
-                        Фильтр
-                        <select id="statusFilter">
-                            <option value="all">Все</option>
-                            <option value="new">Новые</option>
-                            <option value="in_progress">В работе</option>
-                            <option value="resolved">Решённые</option>
-                        </select>
-                    </label>
+                    <div class="filters">
+                        <label class="search-wrap">
+                            <input type="text" id="searchInput" class="input" placeholder="Поиск..." />
+                        </label>
+                        <label>
+                            Фильтр
+                            <select id="statusFilter">
+                                <option value="all">Все</option>
+                                <option value="new">Новые</option>
+                                <option value="in_progress">В работе</option>
+                                <option value="resolved">Решённые</option>
+                            </select>
+                        </label>
+                    </div>
                 </div>
 
                 <div class="table-wrap">

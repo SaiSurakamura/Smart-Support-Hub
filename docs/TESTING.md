@@ -32,7 +32,7 @@
 
 | Экран | Файл |
 |---|---|
-| Dashboard 1366px | docs/img/dashboard-1366.png |
-| Incidents + SLA | docs/img/incidents.png |
-| Mobile 390px (меню открыто) | docs/img/mobile-390.png |
-| Settings / dev-mode | docs/img/settings.png |
+| Dashboard 1366px | dashboard-1366.png |
+| Incidents + SLA | incidents.png |
+| Mobile 390px (меню открыто) | mobile-390.png |
+| Settings / dev-mode | settings.png |

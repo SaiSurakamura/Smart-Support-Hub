@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Settings — Smart Support Hub</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+
+<body>
+    <div class="app">
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                <a href="index.html">Smart Support Hub</a>
+            </div>
+
+            <nav class="nav">
+                <div class="nav-section">Основное</div>
+                <a href="index.html"><span class="nav-icon">▦</span><span>Панель</span></a>
+                <a href="deployments.html"><span class="nav-icon">◈</span><span>Внедрения</span></a>
+
+                <div class="nav-section">Поддержка</div>
+                <a href="incidents.html"><span class="nav-icon">⚑</span><span>Инциденты</span></a>
+                <a href="maintenance.html"><span class="nav-icon">✦</span><span>Заявки</span></a>
+                <a href="releases.html"><span class="nav-icon">⬡</span><span>Релизы</span></a>
+
+                <div class="nav-section">Система</div>
+                <a href="settings.html"><span class="nav-icon">⚙</span><span>Настройки</span></a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="footer-status">
+                    <span class="footer-label">Текущая версия</span>
+                    <strong class="current-version">v1.0.0</strong>
+                </div>
+            </div>
+        </aside>
+
+        <button id="menuBackdrop" class="menu-backdrop" aria-label="Закрыть меню"></button>
+
+        <main class="main">
+            <header class="topbar">
+                <div>
+                    <h1>Настройки</h1>
+                    <p class="hint">Текущая версия: <span id="currentVersionTop" class="current-version">v1.0.0</span>
+                    </p>
+                </div>
+                <div class="actions">
+                    <button id="menuBtn" class="menu-btn" aria-label="Меню">☰</button>
+                    <button id="themeButton" class="btn">Тема</button>
+                </div>
+            </header>
+
+            <section class="card">
+                <h2>Внешний вид</h2>
+                <div class="setting-row">
+                    <div>
+                        <div class="setting-name">Тема оформления</div>
+                        <div class="hint">Сейчас: <strong id="settingsThemeState">Тёмная</strong></div>
+                    </div>
+                    <button id="settingsThemeBtn" class="btn small secondary">Переключить</button>
+                </div>
+                <div class="setting-row">
+                    <div>
+                        <div class="setting-name">Неоновые эффекты</div>
+                        <div class="hint">Сейчас: <strong id="settingsNeonState">Включён</strong></div>
+                    </div>
+                    <button id="settingsNeonBtn" class="btn small secondary">Переключить</button>
+                </div>
+            </section>
+
+            <section class="card">
+                <h2>Профиль и доступ</h2>
+                <p class="hint">Профиль «Разработчик» открывает кнопки удаления записей в инцидентах и заявках.
+                    Доступ
+                    защищён паролем (имитация, не реальная защита).</p>
+
+                <div class="setting-row">
+                    <div>
+                        <div class="setting-name">Текущий профиль</div>
+                        <div class="hint">Сейчас: <strong id="roleStateText">Оператор</strong></div>
+                    </div>
+                    <label class="role-select-wrap">
+                        <select id="roleSelect">
+                            <option value="operator">Оператор</option>
+                            <option value="admin">Администратор</option>
+                            <option value="developer">Разработчик</option>
+                        </select>
+                    </label>
+                </div>
+
+                <div class="setting-row auth-row">
+                    <label class="full">
+                        Пароль для профиля «Разработчик»
+                        <input type="password" id="devPassword" placeholder="Введите пароль" autocomplete="off" />
+                    </label>
+                    <button id="devAuthButton" class="btn primary">Подтвердить профиль</button>
+                </div>
+            </section>
+
+            <section class="card">
+                <h2>Данные</h2>
+                <p class="hint">Полная очистка localStorage: внедрения, инциденты, заявки, релизы, настройки и
+                    профиль
+                    вернутся к учебным значениям.</p>
+                <button id="resetButton" class="btn danger">Очистить все данные</button>
+            </section>
+        </main>
+    </div>
+
+    <script src="assets/js/data.js"></script>
+    <script src="assets/js/storage.js"></script>
+    <script src="assets/js/settings.js"></script>
+</body>
+
+</html>

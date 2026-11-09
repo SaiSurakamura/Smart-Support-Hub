@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Maintenance — Smart Support Hub</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+
+<body>
+    <div class="app">
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                <a href="index.html">Smart Support Hub</a>
+            </div>
+
+            <nav class="nav">
+                <div class="nav-section">Основное</div>
+                <a href="index.html" class="active">
+                    <span class="nav-icon">▦</span><span>Панель</span>
+                </a>
+                <a href="deployments.html">
+                    <span class="nav-icon">◈</span><span>Внедрения</span>
+                </a>
+
+                <div class="nav-section">Поддержка</div>
+                <a href="incidents.html">
+                    <span class="nav-icon">⚑</span><span>Инциденты</span>
+                </a>
+                <a href="maintenance.html">
+                    <span class="nav-icon">✦</span><span>Заявки</span>
+                </a>
+                <a href="releases.html">
+                    <span class="nav-icon">⬡</span><span>Релизы</span>
+                </a>
+                <div class="nav-section">Система</div>
+                <a href="settings.html">
+                    <span class="nav-icon">⚙</span><span>Настройки</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="footer-status">
+                    <span class="footer-label">Текущая версия</span>
+                    <strong class="current-version">v1.0.0</strong>
+                </div>
+            </div>
+        </aside>
+
+        <button id="menuBackdrop" class="menu-backdrop" aria-label="Закрыть меню"></button>
+
+        <main class="main">
+            <header class="topbar">
+                <div>
+                    <h1>Сопровождение</h1>
+                    <p class="hint">Текущая версия: <span id="currentVersionTop" class="current-version">v1.0.0</span>
+                    </p>
+                </div>
+                <div class="actions">
+                    <button id="menuBtn" class="menu-btn" aria-label="Меню">☰</button>
+                    <button id="neonButton" class="btn secondary">Neon</button>
+                    <button id="themeButton" class="btn">Тема</button>
+                </div>
+            </header>
+
+            <section class="card">
+                <h2>Создать заявку на изменение</h2>
+                <form id="requestForm" class="form-grid">
+                    <label class="full">
+                        Название
+                        <input type="text" name="title" placeholder="Добавить экспорт отчёта в PDF" required />
+                    </label>
+
+                    <label>
+                        Вид сопровождения
+                        <select name="type">
+                            <option value="corrective">Корректирующее</option>
+                            <option value="adaptive">Адаптивное</option>
+                            <option value="perfective" selected>Совершенствующее</option>
+                            <option value="preventive">Профилактическое</option>
+                        </select>
+                    </label>
+
+                    <label>
+                        Статус
+                        <select name="status">
+                            <option value="new">Новая</option>
+                            <option value="planned" selected>Запланирована</option>
+                            <option value="done">Выполнена</option>
+                        </select>
+                    </label>
+
+                    <label>
+                        Целевая версия
+                        <input type="text" name="targetVersion" placeholder="v1.1.0" required />
+                    </label>
+
+                    <div class="full">
+                        <button type="submit" class="btn">Добавить заявку</button>
+                    </div>
+                </form>
+            </section>
+
+            <section class="card">
+                <h2>Список заявок</h2>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Название</th>
+                                <th>Вид</th>
+                                <th>Статус</th>
+                                <th>Целевая версия</th>
+                            </tr>
+                        </thead>
+                        <tbody id="requestTable"></tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="assets/js/data.js"></script>
+    <script src="assets/js/storage.js"></script>
+    <script src="assets/js/maintenance.js"></script>
+</body>
+
+</html>

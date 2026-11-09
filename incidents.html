@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Incidents — Smart Support Hub</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+
+<body>
+    <div class="app">
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                <a href="index.html">Smart Support Hub</a>
+            </div>
+
+            <nav class="nav">
+                <div class="nav-section">Основное</div>
+                <a href="index.html" class="active">
+                    <span class="nav-icon">▦</span><span>Панель</span>
+                </a>
+                <a href="deployments.html">
+                    <span class="nav-icon">◈</span><span>Внедрения</span>
+                </a>
+
+                <div class="nav-section">Поддержка</div>
+                <a href="incidents.html">
+                    <span class="nav-icon">⚑</span><span>Инциденты</span>
+                </a>
+                <a href="maintenance.html">
+                    <span class="nav-icon">✦</span><span>Заявки</span>
+                </a>
+                <a href="releases.html">
+                    <span class="nav-icon">⬡</span><span>Релизы</span>
+                </a>
+                <div class="nav-section">Система</div>
+                <a href="settings.html">
+                    <span class="nav-icon">⚙</span><span>Настройки</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="footer-status">
+                    <span class="footer-label">Текущая версия</span>
+                    <strong class="current-version">v1.0.0</strong>
+                </div>
+            </div>
+        </aside>
+
+        <button id="menuBackdrop" class="menu-backdrop" aria-label="Закрыть меню"></button>
+
+        <main class="main">
+            <header class="topbar">
+                <div>
+                    <h1>Инциденты</h1>
+                    <p class="hint">Текущая версия: <span id="currentVersionTop" class="current-version">v1.0.0</span>
+                    </p>
+                </div>
+                <div class="actions">
+                    <button id="menuBtn" class="menu-btn" aria-label="Меню">☰</button>
+                    <button id="neonButton" class="btn secondary">Neon</button>
+                    <button id="themeButton" class="btn">Тема</button>
+                </div>
+            </header>
+
+            <section class="card">
+                <h2>Зарегистрировать инцидент</h2>
+                <form id="incidentForm" class="form-grid">
+                    <label class="full">
+                        Описание
+                        <input type="text" id="title" name="title" placeholder="Не открывается отчёт" required />
+                    </label>
+
+                    <label>
+                        Приоритет
+                        <select id="priority" name="priority">
+                            <option value="critical">Критический</option>
+                            <option value="high" selected>Высокий</option>
+                            <option value="medium">Средний</option>
+                            <option value="low">Низкий</option>
+                        </select>
+                    </label>
+
+                    <div class="full">
+                        <button type="submit" class="btn">Создать инцидент</button>
+                    </div>
+                </form>
+            </section>
+
+            <section class="card">
+                <div class="row-between">
+                    <h2>Список инцидентов</h2>
+                    <label>
+                        Фильтр
+                        <select id="statusFilter">
+                            <option value="all">Все</option>
+                            <option value="new">Новые</option>
+                            <option value="in_progress">В работе</option>
+                            <option value="resolved">Решённые</option>
+                        </select>
+                    </label>
+                </div>
+
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Описание</th>
+                                <th>Приоритет</th>
+                                <th>Статус</th>
+                                <th>Создан</th>
+                                <th>SLA</th>
+                                <th>Действие</th>
+                            </tr>
+                        </thead>
+                        <tbody id="incidentTable"></tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="assets/js/data.js"></script>
+    <script src="assets/js/storage.js"></script>
+    <script src="assets/js/incidents.js"></script>
+</body>
+
+</html>
